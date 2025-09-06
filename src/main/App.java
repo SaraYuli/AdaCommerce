@@ -13,7 +13,7 @@ public class App {
 
         // Criar cliente
         Cliente cliente1 = new Cliente("c1", "Maria", "12345678900");
-        Cliente cliente2 = new Cliente("c2", "Sara", "123123123");
+        Cliente cliente2 = new Cliente("c2", "Sara","123456");
         clientes.salvar(cliente1);
         clientes.salvar(cliente2);
 
