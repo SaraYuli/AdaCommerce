@@ -1,10 +1,18 @@
 package main;
 
-import model.*;
+import model.Cliente;
+import model.Pedido;
+import model.Produto;
 import repository.RepositorioMemoria;
+
+import java.time.format.DateTimeFormatter;
+
+
 
 public class App {
     public static void main(String[] args) {
+
+
         // Criando repositórios com função para extrair ID
 
         var clientes = new RepositorioMemoria<Cliente>(Cliente::getId);
@@ -37,12 +45,17 @@ public class App {
         pedidos.salvar(pedido2);
 
 
-        // Mostrar pedido
-        System.out.println("----- PEDIDOS -----");
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        // Exibir pedidos
+        System.out.println("============ PEDIDOS ============");
         for (Pedido p : pedidos.listar()) {
+            System.out.println("ID: " + p.getId());
             System.out.println("Cliente: " + p.getCliente().getNome());
             System.out.println("Status: " + p.getStatus());
-            System.out.println("Total: R$ " + p.getTotal());
+            System.out.printf("Total: R$ %.2f%n", p.getTotal());
+            System.out.println("Criado em: " + p.getDataCriacao().format(formato));
+            System.out.println("--------------------------------");
         }
     }
 }
